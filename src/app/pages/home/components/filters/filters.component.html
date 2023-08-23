@@ -1,0 +1,18 @@
+<mat-expansion-panel *ngIf="post.categories">
+    <mat-expansion-panel-header>
+        <mat-panel-title>Filters</mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-selection-list [multiple]="false">
+        <mat-list-option *ngFor="let Category of post.categories" [value]="Category">
+            <button (click)="onShowCategory(Category.id)">{{Category.name}}</button>
+        </mat-list-option>
+    </mat-selection-list>
+    <mat-selection-list [multiple]="false">
+        <mat-list-option [selected]="allItems" >
+            <button (click)="onShowPopularItems(false)">All items</button>
+        </mat-list-option>
+        <mat-list-option>
+            <button (click)="onShowPopularItems(true)">Popular items</button>
+        </mat-list-option>
+    </mat-selection-list>
+</mat-expansion-panel>
