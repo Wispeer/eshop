@@ -28,7 +28,8 @@ import { CartService } from './services/cart.service';
 import { StoreService } from './services/store.service';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ProductFooterComponent } from './pages/home/components/products-footer/products-footer.component';
-//import { addProductReducer } from './reducers/reducers.component';
+import { addProductReducer } from './reducers/product.reducer';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ProductFooterComponent } from './pages/home/components/products-footer/
     ProductBoxComponent,
     CartComponent,
     ProductFooterComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,7 @@ import { ProductFooterComponent } from './pages/home/components/products-footer/
     MatSnackBarModule,
     MatPaginatorModule,
     StoreModule,
-    //StoreModule.forRoot({product: addProductReducer})
+    StoreModule.forRoot({product: addProductReducer})
   ],
   providers: [CartService, StoreService],
   bootstrap: [AppComponent]
