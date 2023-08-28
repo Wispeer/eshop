@@ -60,8 +60,7 @@ import { ProductComponent } from './product/product.component';
     MatBadgeModule,
     MatSnackBarModule,
     MatPaginatorModule,
-    StoreModule,
-    StoreModule.forRoot({product: addProductReducer})
+    StoreModule
   ],
   providers: [CartService, StoreService],
   bootstrap: [AppComponent]
