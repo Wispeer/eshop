@@ -25,10 +25,16 @@
         <div
           (addToCart)="onAddToCart($event)"
           app-product-box
-          [product]="product"
           [fullWidthMode]="cols === 1"
           class="w-full"
         ></div>
+        <!-- <app-product>
+          (addToCart)="onAddToCart($event)"
+          app-product-box
+          [product]="product"
+          [fullWidthMode]="cols === 1"
+          class="w-full"
+        </app-product> -->
       </mat-grid-tile>
     </mat-grid-list>
   <app-products-footer

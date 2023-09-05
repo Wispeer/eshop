@@ -14,7 +14,7 @@ export class ProductComponent implements OnInit {
   products: Observable<Product[]>;
 
   constructor(private store: Store<AppState>) {
-    this.products = this.store.select(state => state.product);
+    this.products = this.store.select(state => state.products);
    }
 
   addProduct(name: any, price: any) {
