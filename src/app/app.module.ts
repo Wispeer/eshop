@@ -14,6 +14,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatListModule } from '@angular/material/list';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,8 +29,7 @@ import { CartService } from './services/cart.service';
 import { StoreService } from './services/store.service';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ProductFooterComponent } from './pages/home/components/products-footer/products-footer.component';
-import { addProductReducer } from './reducers/product.reducer';
-import { ProductComponent } from './product/product.component';
+import { addProductReducer, addProductReducer2 } from './reducers/product.reducer';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,6 @@ import { ProductComponent } from './product/product.component';
     ProductBoxComponent,
     CartComponent,
     ProductFooterComponent,
-    ProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +59,11 @@ import { ProductComponent } from './product/product.component';
     MatBadgeModule,
     MatSnackBarModule,
     MatPaginatorModule,
-    StoreModule
+    StoreModule.forRoot({product: addProductReducer, product2: addProductReducer2}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: true, // Restrict extension to log-only mode
+    }),
   ],
   providers: [CartService, StoreService],
   bootstrap: [AppComponent]

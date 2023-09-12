@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { Store, select } from '@ngrx/store';
 import { Cart, CartItem } from 'src/app/models/cart.model';
+import { ADD_PRODUCT, addProductReducer } from 'src/app/reducers/product.reducer';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
@@ -11,6 +13,7 @@ export class HeaderComponent {
   itemsQuantity = 0;
   cartSubscription: any;
   dataSource: CartItem[] | undefined;
+  data: any = [];
 
   @Input()
   get cart(): Cart {
@@ -25,7 +28,7 @@ export class HeaderComponent {
       .reduce((prev, curent) => prev + curent, 0);
   }
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private store: Store) {}
 
   ngOnInit(){
     this.cartSubscription = this.cartService.cart.subscribe((_cart: Cart) => {
@@ -34,6 +37,14 @@ export class HeaderComponent {
     });
     
     console.log(this.cart , 'cart')
+    this.store.pipe(select((state: any) => {return state.product})).subscribe((state: any) => {
+      console.log('state', state);
+      this.data = state;
+    })
+
+    this.store.pipe(select((state: any) => {return state.product2})).subscribe((state: any) => {
+      console.log('state2', state);
+    })
   }
 
   getTotal(items: CartItem[]): number {
@@ -43,4 +54,13 @@ export class HeaderComponent {
   onClearCart(): void {
     this.cartService.clearCart();
   }
+
+  onClickToAddToStore(): void{
+    this.store.dispatch({type: ADD_PRODUCT, payload: 1});
+  }
+
+  onClickToAddToStore2(): void{
+    this.store.dispatch({type: 'TEST', payload: 1});
+  }
+    
 }

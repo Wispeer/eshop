@@ -2,14 +2,47 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Cart, CartItem } from '../models/cart.model';
+import { Store } from '@ngrx/store';
+import { AppState } from '../app.state';
+import { Observable } from 'rxjs';
+import { Product } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  cart = new BehaviorSubject<Cart>({ items: [] });
 
-  constructor(private _snackBar: MatSnackBar) {}
+  cart = new BehaviorSubject<Cart>({ items: [] });
+  CartProducts: Observable<Product[]>;
+  storeCart!: Observable<CartItem[]>;
+
+  constructor(private _snackBar: MatSnackBar, private store: Store<AppState>) {
+    this.CartProducts = this.store.select(state => state.products);
+  }
+
+  ngOnInit(): void {
+      throw new Error('Method not implemented.');
+  }
+
+  addProductToCart(id: number, category: number, name: string, 
+    description: string, image: string, isPopular: boolean, 
+    price: number, quantity: number, created: string,) {
+      this.store.dispatch({
+        type: 'ADD_PRODUCT',
+        payload: <Product> {
+          id: id,
+          category: category,
+          name: name,
+          description: description,
+          image: image,
+          isPopular: isPopular,
+          price: price,
+          quantity: quantity,
+          created: created,
+        }
+      }
+    );
+  }
 
   addToCart(item: CartItem): void {
     const items = [...this.cart.value.items];

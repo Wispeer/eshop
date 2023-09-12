@@ -1,5 +1,9 @@
 <mat-toolbar class="max-w-7x1 mx-auto flex justify-between border-x">
   <a routerLink="home">Image galery</a>
+  <button (click)="onClickToAddToStore()">Add to store</button>
+  <button (click)="onClickToAddToStore2()">Add to store2</button>
+
+  <div>{{data}}</div>
   <button mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon
       [matBadge]="itemsQuantity"

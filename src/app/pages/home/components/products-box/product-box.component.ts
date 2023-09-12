@@ -4,8 +4,9 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/app.state';
 import { state } from '@angular/animations';
-import { untilDestroyed } from '@ngneat/until-destroy';
-
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+ @UntilDestroy()
+ 
 @Component({
   selector: '[app-product-box]',
   templateUrl: './product-box.component.html',
