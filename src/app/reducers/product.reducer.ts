@@ -1,7 +1,10 @@
 import { Action } from '@ngrx/store';
-import { Product } from '../models/product.model';
+import { Category, Product } from '../models/product.model';
 
 export const ADD_PRODUCT = 'ADD_PRODUCT';
+export const LOAD_PRODUCT = 'LOAD_PRODUCT';
+export const LOAD_CATEGORY = 'LOAD_CATEGORY';
+export const LOAD_SELECTED_CATEGORY = 'LOAD_SELECTED_CATEGORY';
 
 export function addProductReducer(state: Product[] = [], action: any) {
   switch (action.type) {
@@ -11,11 +14,31 @@ export function addProductReducer(state: Product[] = [], action: any) {
         return state;
     }
 }
-export function addProductReducer2(state: Product[] = [], action: any) {
+
+export function loadProductsReducer(state: Product[] = [], action: any) {
+    // console.log('state', action.payload, state);
     switch (action.type) {
-      case 'TEST':
+      case LOAD_PRODUCT:
           return [...state, action.payload];
       default:
           return state;
       }
-  }
+}
+
+export function loadCategoriesReducer(state: Category[] = [], action2: any) {
+    switch (action2.type) {
+      case LOAD_CATEGORY:
+          return [...state, action2.payload];
+      default:
+          return state;
+      }
+}
+
+export function loadSelectedCategoryReducer(state: number[] = [], action3: any) {
+    switch (action3.type) {
+        case LOAD_SELECTED_CATEGORY:
+            return [...[state], action3.payload];
+        default:
+            return state;
+    }
+}

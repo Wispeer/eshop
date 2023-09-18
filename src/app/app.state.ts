@@ -7,6 +7,7 @@ export interface AppState {
    products: Product[];
    category: Category;
    categories: Category[];
+   selectedCategoryId: number;
    cart: CartComponent;
    cartItems: CartItem[];
 }

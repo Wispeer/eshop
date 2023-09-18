@@ -1,9 +1,7 @@
 import { Component,EventEmitter,Input, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/app.state';
-import { state } from '@angular/animations';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
  @UntilDestroy()
  
@@ -13,16 +11,22 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 })
 export class ProductBoxComponent {
   @Input() fullWidthMode = false;
-  product$: Observable<Product> = this.store.select(state => state.product);
-  product: Product | null = null;
+  @Input() product: Product | any;
+  
   @Output() addToCart = new EventEmitter();
 
   constructor(private store: Store<AppState>) {
-    this.product$.pipe(untilDestroyed(this)).subscribe(data => data)
+    this.store.pipe(select((state: any) => {return state.products})).subscribe((state: any) => {
+      // console.log('state', state);
+      this.product = state;
+    })
+
+    // this.product$.pipe(untilDestroyed(this)).subscribe(data => data)
   }
 
   ngOnInit(): void {
-      this.product$.pipe(untilDestroyed(this)).subscribe(data => (this.product = data));
+    // console.log('product-box this.product', this.product);
+    // this.product$.pipe(untilDestroyed(this)).subscribe(data => (this.product = data));
   }
 
   onAddToCart(): void {

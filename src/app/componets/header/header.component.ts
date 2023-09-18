@@ -36,14 +36,14 @@ export class HeaderComponent {
       this.dataSource = _cart.items;
     });
     
-    console.log(this.cart , 'cart')
+    // console.log(this.cart , 'cart')
     this.store.pipe(select((state: any) => {return state.product})).subscribe((state: any) => {
-      console.log('state', state);
+      // console.log('state', state);
       this.data = state;
     })
 
     this.store.pipe(select((state: any) => {return state.product2})).subscribe((state: any) => {
-      console.log('state2', state);
+      // console.log('state2', state);
     })
   }
 
@@ -59,8 +59,8 @@ export class HeaderComponent {
     this.store.dispatch({type: ADD_PRODUCT, payload: 1});
   }
 
-  onClickToAddToStore2(): void{
-    this.store.dispatch({type: 'TEST', payload: 1});
-  }
+  // onClickToAddToStore2(): void{
+  //   this.store.dispatch({type: 'TEST', payload: 1});
+  // }
     
 }

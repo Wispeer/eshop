@@ -29,21 +29,21 @@ export class ProductFooterComponent implements OnInit ,OnChanges{
 
   maxPageLimiter(): void{
     this.maxPagelimitInFooter = this.maxPagelimitInFooter;
-    console.log( this.maxPagelimitInFooter, "products-footer");
+    // console.log( this.maxPagelimitInFooter, "products-footer");
   }
 
   onNextPage(page: number): void {
     if(page < this.maxPagelimitInFooter)
     page = this.page;
     this.nextPageChange.emit(page);
-    console.log( page, "page");
+    // console.log( page, "page");
   }
 
   onPreviousPage(page: number): void {
     if(this.page >= 1) {
       page = this.page;
       this.previousPageChange.emit(page);
-      console.log( page, "page");
+      // console.log( page, "page");
     }
   }
 }

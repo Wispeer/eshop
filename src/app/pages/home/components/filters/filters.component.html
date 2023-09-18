@@ -1,9 +1,9 @@
-<mat-expansion-panel *ngIf="post.categories">
+<mat-expansion-panel *ngIf="categories">
     <mat-expansion-panel-header>
         <mat-panel-title>Filters</mat-panel-title>
     </mat-expansion-panel-header>
     <mat-selection-list [multiple]="false">
-        <mat-list-option *ngFor="let Category of post.categories" [value]="Category">
+        <mat-list-option *ngFor="let Category of categories" [value]="Category">
             <button (click)="onShowCategory(Category.id)">{{Category.name}}</button>
         </mat-list-option>
     </mat-selection-list>

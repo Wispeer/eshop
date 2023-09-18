@@ -29,7 +29,7 @@ import { CartService } from './services/cart.service';
 import { StoreService } from './services/store.service';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ProductFooterComponent } from './pages/home/components/products-footer/products-footer.component';
-import { addProductReducer, addProductReducer2 } from './reducers/product.reducer';
+import { addProductReducer, loadProductsReducer, loadCategoriesReducer, loadSelectedCategoryReducer } from './reducers/product.reducer';
 
 @NgModule({
   declarations: [
@@ -59,7 +59,9 @@ import { addProductReducer, addProductReducer2 } from './reducers/product.reduce
     MatBadgeModule,
     MatSnackBarModule,
     MatPaginatorModule,
-    StoreModule.forRoot({product: addProductReducer, product2: addProductReducer2}),
+    StoreModule.forRoot({
+      product: addProductReducer, products: loadProductsReducer, 
+      categories: loadCategoriesReducer, selectedCategoryId: loadSelectedCategoryReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: true, // Restrict extension to log-only mode
