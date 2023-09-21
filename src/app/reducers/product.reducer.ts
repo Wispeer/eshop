@@ -16,7 +16,6 @@ export function addProductReducer(state: Product[] = [], action: any) {
 }
 
 export function loadProductsReducer(state: Product[] = [], action: any) {
-    // console.log('state', action.payload, state);
     switch (action.type) {
       case LOAD_PRODUCT:
           return [...state, action.payload];

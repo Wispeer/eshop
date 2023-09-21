@@ -16,7 +16,7 @@
       (sortChange)="onSortChange($event)"
     ></app-products-header>
     <mat-grid-list
-      *ngIf="products$ && products$.length"
+      *ngIf="products && products.length"
       gutterSize="16"
       [cols]="cols"
       [rowHeight]="rowHeight"

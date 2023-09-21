@@ -17,16 +17,11 @@ export class ProductBoxComponent {
 
   constructor(private store: Store<AppState>) {
     this.store.pipe(select((state: any) => {return state.products})).subscribe((state: any) => {
-      // console.log('state', state);
       this.product = state;
     })
-
-    // this.product$.pipe(untilDestroyed(this)).subscribe(data => data)
   }
 
   ngOnInit(): void {
-    // console.log('product-box this.product', this.product);
-    // this.product$.pipe(untilDestroyed(this)).subscribe(data => (this.product = data));
   }
 
   onAddToCart(): void {

@@ -27,13 +27,11 @@ export class StoreService {
 
   getAllProducts() {
     this.store.dispatch({type: LOAD_PRODUCT, payload: this.post.products});
-    console.log('this.products from store', this.post.products);
     return of(this.post.products)
   }
 
   getAllCategories() {
     this.store.dispatch({type: LOAD_CATEGORY, payload: this.post.categories});
-    console.log('this.categories from store', this.post.categories);
     return of(this.post.categories)
   }
   
