@@ -29,7 +29,8 @@ import { CartService } from './services/cart.service';
 import { StoreService } from './services/store.service';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ProductFooterComponent } from './pages/home/components/products-footer/products-footer.component';
-import { addProductReducer, loadProductsReducer, loadCategoriesReducer, loadSelectedCategoryReducer } from './reducers/product.reducer';
+import { addProductReducer, loadProductsReducer, loadCategoriesReducer, loadSelectedCategoryReducer, loadSelectedPopularityReducer } from './reducers/product.reducer';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { addProductReducer, loadProductsReducer, loadCategoriesReducer, loadSele
     ProductBoxComponent,
     CartComponent,
     ProductFooterComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,8 @@ import { addProductReducer, loadProductsReducer, loadCategoriesReducer, loadSele
     MatPaginatorModule,
     StoreModule.forRoot({
       product: addProductReducer, products: loadProductsReducer, 
-      categories: loadCategoriesReducer, selectedCategoryId: loadSelectedCategoryReducer}),
+      categories: loadCategoriesReducer, selectedCategoryId: loadSelectedCategoryReducer,
+      selectedPopularity: loadSelectedPopularityReducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: true, // Restrict extension to log-only mode

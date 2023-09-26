@@ -8,6 +8,7 @@ export interface AppState {
    category: Category;
    categories: Category[];
    selectedCategoryId: number;
+   selectedPopularity: boolean;
    cart: CartComponent;
    cartItems: CartItem[];
 }

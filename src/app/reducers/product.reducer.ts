@@ -5,6 +5,7 @@ export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const LOAD_PRODUCT = 'LOAD_PRODUCT';
 export const LOAD_CATEGORY = 'LOAD_CATEGORY';
 export const LOAD_SELECTED_CATEGORY = 'LOAD_SELECTED_CATEGORY';
+export const LOAD_SELECTED_POPULARITY = 'LOAD_SELECTED_POPULARITY';
 
 export function addProductReducer(state: Product[] = [], action: any) {
   switch (action.type) {
@@ -37,6 +38,15 @@ export function loadSelectedCategoryReducer(state: number[] = [], action3: any) 
     switch (action3.type) {
         case LOAD_SELECTED_CATEGORY:
             return [...[state], action3.payload];
+        default:
+            return state;
+    }
+}
+
+export function loadSelectedPopularityReducer(state: boolean[] = [], action4: any) {
+    switch (action4.type) {
+        case LOAD_SELECTED_POPULARITY:
+            return [...[state], action4.payload];
         default:
             return state;
     }

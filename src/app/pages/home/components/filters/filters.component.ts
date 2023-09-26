@@ -1,10 +1,11 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { MatSelectionListChange } from '@angular/material/list';
+import { MatListOption, MatSelectionListChange } from '@angular/material/list';
 import { Store, select } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { AppState } from 'src/app/app.state';
 import { Category } from 'src/app/models/product.model';
-import { LOAD_SELECTED_CATEGORY } from 'src/app/reducers/product.reducer';
+import { LOAD_SELECTED_CATEGORY, LOAD_SELECTED_POPULARITY } from 'src/app/reducers/product.reducer';
 
 @Component({
   selector: 'app-filters',
@@ -18,6 +19,7 @@ export class FiltersComponent implements OnInit {
   categories: Category[] | undefined;
   allItems: boolean = true;
   selectedCategory: Observable<number> |any;
+  selectedPopularity: Observable<boolean> | any;
   
   constructor(private store: Store<AppState>) {
   }
@@ -28,6 +30,7 @@ export class FiltersComponent implements OnInit {
       this.categories = state.flat();
     }) 
     this.getCategoryFilter(this.selectedCategory);
+    this.selectedPopularity = false;
   }
 
   onShowCategory(event: MatSelectionListChange): void {
@@ -37,7 +40,9 @@ export class FiltersComponent implements OnInit {
     console.log('event change category ', event.options[0].value.id);
   }
 
-  onShowPopularItems(wantPopular: boolean): void{
+  onShowPopularItems(wantPopular: boolean): void  {
+    this.store.dispatch({type: LOAD_SELECTED_POPULARITY, payload: wantPopular});
+    console.log('filter.component', wantPopular)
     this.showPopular.next(wantPopular);
   }
 
