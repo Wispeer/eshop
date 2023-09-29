@@ -5,6 +5,7 @@ import { Category, Product } from 'src/app/models/product.model';
 export interface AppState {
    product: Product;
    products: Product[];
+   productDetails: Product;
    category: Category;
    categories: Category[];
    selectedCategoryId: number;

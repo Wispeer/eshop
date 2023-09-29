@@ -1,5 +1,6 @@
 <mat-card *ngIf="product" [ngClass]="{ 'text-center': !fullWidthMode }">
     <div [ngClass]="{ flex: fullWidthMode }">
+      <a routerLink="/details/{{product.id}}"></a>
       <img
         class="mb-1 mx-auto"
         [ngClass]="{ 'h-[200px]': !fullWidthMode, 'h-[360px]': fullWidthMode }"
